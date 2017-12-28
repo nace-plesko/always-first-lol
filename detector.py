@@ -22,6 +22,19 @@ class Rect:
     def avg_y(self):
         return int((self.y_max + self.y_min) / 2)
 
+    def height(self):
+        return self.y_max - self.y_min
+
+    def length(self):
+        return self.x_max - self.x_min
+
+    def topRight_x(self):
+        return self.x_max
+
+    def topRight_y(self):
+        return self.y_min
+
+
 
 class Detector:
     def __init__(self, screenshot=None):
@@ -34,6 +47,7 @@ class Detector:
             # (61, 52, 0, 255),  # frame around chatbox
             # (53, 41, 14),  # frame around chatbox (screenshot)
             (61, 52, 0),  # frame around chatbox
+            (62, 53, 1),  # frame around chatbox
         ]
 
     def print_color_under_cursor(self):
@@ -54,4 +68,23 @@ class Detector:
                     x_max = x if x > x_max else x_max
                     y_min = y if y < y_min else y_min
                     y_max = y if y > y_max else y_max
-        return Rect(x_min, x_max, y_min, y_max)
+
+        if x_max < 0:
+            raise AssertionError('Could not find chatbox')
+
+        r = Rect(x_min, x_max, y_min, y_max)
+        print('Chatbox: %s' % r)
+        return r
+
+    def print_coordinates_under_cursor(self):
+        mouse = Controller()
+        while True:
+            print(mouse.position)
+            time.sleep(5)
+
+    def find_lockin(self, rect):
+        x_max = int(rect.topRight_x() + rect.length() * 0.95)
+        y_min = int(rect.topRight_y() - rect.height() * 2.2)
+        r = Rect(x_max - 20 , x_max , y_min, y_min + 20)
+        print('Lockin: %s' % r)
+        return r
