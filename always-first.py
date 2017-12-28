@@ -4,9 +4,9 @@ import time
 
 LANE = 'MID'
 INITIAL_COUNT = 5
-WAIT_INITIAL_SEC = 5 * 60  # 5 minutes
+WAIT_INITIAL_SEC = 10 * 60  # 5 minutes
 ON_PLAYER_JOINED_COUNT = 3
-WAIT_PLAYER_JOINED_SEC = 5
+WAIT_PLAYER_JOINED_SEC = 10
 
 time.sleep(2)
 runner = Runner()

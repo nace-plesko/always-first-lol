@@ -10,7 +10,8 @@ class Runner:
         self.mouse = Controller()
         self.keyboard = KeyController()
         self.chat_colors = [
-            (1, 10, 19),
+            (1, 10, 19),  # chatbox body color
+            (14, 23, 30),
         ]
         self.lockin_colors = [
             (92, 91, 87),  # button border
@@ -21,7 +22,17 @@ class Runner:
         ]
 
     def move_and_type_first(self, lane, repeat, chatbox, lockin, timeout=5*60):
-        self._type_when_color(chatbox, lockin, self.lockin_colors, lane, repeat, timeout_sec=timeout, name='matchmake screen')
+        self._type_when_color(
+            chatbox,
+            lockin,
+            self.lockin_colors,
+            lane,
+            repeat,
+            rect2=chatbox,
+            expected_colors2=self.chat_colors,
+            timeout_sec=timeout,
+            name='matchmake screen'
+        )
 
     def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5):
         self._type_when_color(chatbox, players_joined, self.player_joined_colors, lane, repeat, timeout_sec=timeout, name='player joined')
@@ -30,7 +41,7 @@ class Runner:
     # Utility
     #
 
-    def _type_when_color(self, chatbox, rect, expected_colors, text, repeat, timeout_sec=5, name=''):
+    def _type_when_color(self, chatbox, rect, expected_colors, text, repeat, timeout_sec=5, name='', rect2=None, expected_colors2=None):
         print('Type when %s...' % name)
         t_start = datetime.utcnow()
         x = chatbox.avg_x()
@@ -40,9 +51,11 @@ class Runner:
                 print('Done waiting %s to appear (timeout is set to %d sec)' % (name, timeout_sec))
                 break
             if self._rect_contains_color(rect, expected_colors):
-                print('Color is correct')
-                self._move_and_type(x, y, text, repeat)
-                break
+                print('First color is correct')
+                if rect2 is None or self._rect_contains_color(rect2, expected_colors2):
+                    print('Typing to coordinates: (%d, %d)' % (x, y))
+                    self._move_and_type(x, y, text, repeat)
+                    break
         print('Done typing when %s' % name)
 
     def _move_and_type(self, x, y, lane, howManyTimes):
