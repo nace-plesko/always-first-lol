@@ -46,7 +46,8 @@ class Runner:
             if datetime.utcnow() - t_start > timedelta(minutes=5):
                 print('Timeout waiting matchmaking screen to appear')
                 return
-            if self.color_at_pixel(lockin.avg_x(), lockin.avg_y()) in self.lockin_colors:
+            # if self.color_at_pixel(lockin.avg_x(), lockin.avg_y()) in self.lockin_colors:
+            if self.rect_contains_color(lockin, self.lockin_colors):
                 print('lockin color is correct')
                 self.mouse.position = (x, y)  #move mouse to the wanted position
                 self.mouse.press(Button.left) #and click there
