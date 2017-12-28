@@ -13,20 +13,18 @@ class Runner:
             (1, 10, 19),
         ]
         self.lockin_colors = [
-            (30, 35, 40),
-            (29, 36, 41),
-            (29, 38, 42),
+            (92, 91, 87),  # button border
         ]
         self.player_joined_colors = [
             (66, 66, 65),
             (66, 66, 66),
         ]
 
-    def move_and_type_first(self, lane, repeat, chatbox, lockin):
-        self._type_when_color(chatbox, lockin, self.lockin_colors, lane, repeat, timeout_sec=5*60, name='matchmake screen')
+    def move_and_type_first(self, lane, repeat, chatbox, lockin, timeout=5*60):
+        self._type_when_color(chatbox, lockin, self.lockin_colors, lane, repeat, timeout_sec=timeout, name='matchmake screen')
 
-    def move_and_type_again(self, lane, repeat, chatbox, players_joined):
-        self._type_when_color(chatbox, players_joined, self.player_joined_colors, lane, repeat, timeout_sec=5, name='player joined')
+    def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5):
+        self._type_when_color(chatbox, players_joined, self.player_joined_colors, lane, repeat, timeout_sec=timeout, name='player joined')
 
     #
     # Utility
@@ -39,7 +37,7 @@ class Runner:
         y = chatbox.avg_y()
         while True:
             if datetime.utcnow() - t_start > timedelta(seconds=timeout_sec):
-                print('Done waiting %s to appear' % name)
+                print('Done waiting %s to appear (timeout is set to %d sec)' % (name, timeout_sec))
                 break
             if self._rect_contains_color(rect, expected_colors):
                 print('Color is correct')

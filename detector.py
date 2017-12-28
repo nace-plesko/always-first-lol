@@ -44,10 +44,6 @@ class Detector:
         self.w = self.screenshot.width
         self.h = self.screenshot.height
         self.chatbox_colors = [
-            # (0,  9, 18, 255),  # before start game
-            # (1, 10, 19, 255),  # finding match
-            # (61, 52, 0, 255),  # frame around chatbox
-            # (53, 41, 14),  # frame around chatbox (screenshot)
             (61, 52, 0),  # frame around chatbox
             (62, 53, 1),  # frame around chatbox
         ]
@@ -72,7 +68,7 @@ class Detector:
                     y_max = y if y > y_max else y_max
 
         if x_max < 0:
-            raise AssertionError('Could not find chatbox')
+            raise AssertionError('Could not find chatbox - make sure you switch to LOL window after starting the program!')
 
         r = Rect(x_min, x_max, y_min, y_max)
         print('Chatbox: %s' % r)
@@ -87,7 +83,7 @@ class Detector:
     def find_lockin(self, rect):
         x_max = int(rect.topRight_x() + rect.length() * 0.95)
         y_min = int(rect.topRight_y() - rect.height() * 2.2)
-        r = Rect(x_max - 20 , x_max , y_min, y_min + 20)
+        r = Rect(x_max - 5 , x_max , y_min - 450, y_min + 50)
         print('Lockin: %s' % r)
         return r
 
