@@ -95,3 +95,20 @@ class Detector:
         r = Rect(rect.x_min, rect.x_max, rect.y_min - 5*rect.height(), rect.y_min)
         print('Players joined: %s' % r)
         return r
+
+    def test_detector(self, chatbox, lockin, players_joined):
+        image = ImageGrab.grab()
+        px = image.load()
+        for i in range(chatbox.x_min, chatbox.x_max):
+            for j in range (chatbox.y_min, chatbox.y_max):
+                px[i, j] = (0, 200, 0, 255)
+
+        for i in range(lockin.x_min, lockin.x_max):
+            for j in range (lockin.y_min, lockin.y_max):
+                px[i, j] = (0, 200, 0, 255)
+
+        for i in range(players_joined.x_min, players_joined.x_max):
+            for j in range (players_joined.y_min, players_joined.y_max):
+                px[i, j] = (255, 0, 0, 255)
+
+        image.show()
