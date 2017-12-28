@@ -34,6 +34,8 @@ class Rect:
     def topRight_y(self):
         return self.y_min
 
+    def to_tuple(self):
+        return self.x_min, self.y_min, self.x_max, self.y_max
 
 
 class Detector:
@@ -87,4 +89,9 @@ class Detector:
         y_min = int(rect.topRight_y() - rect.height() * 2.2)
         r = Rect(x_max - 20 , x_max , y_min, y_min + 20)
         print('Lockin: %s' % r)
+        return r
+
+    def find_players_joined(self, rect):
+        r = Rect(rect.x_min, rect.x_max, rect.y_min - 5*rect.height(), rect.y_min)
+        print('Players joined: %s' % r)
         return r
