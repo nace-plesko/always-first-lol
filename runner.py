@@ -3,6 +3,7 @@ from pynput.keyboard import Key, Controller as KeyController
 from PIL import ImageGrab
 import time
 from datetime import datetime, timedelta
+import threading
 
 
 class Runner:
@@ -21,7 +22,7 @@ class Runner:
             (66, 66, 66),
         ]
 
-    def move_and_type_first(self, lane, repeat, chatbox, lockin, timeout=5*60):
+    def move_and_type_first(self, lane, repeat, chatbox, lockin, timeout=5*60, stoprequest=None):
         self._type_when_color(
             chatbox,
             lockin,
@@ -31,7 +32,8 @@ class Runner:
             rect2=chatbox,
             expected_colors2=self.chat_colors,
             timeout_sec=timeout,
-            name='matchmake screen'
+            name='matchmake screen',
+            stoprequest=stoprequest,
         )
 
     def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5):
@@ -41,12 +43,15 @@ class Runner:
     # Utility
     #
 
-    def _type_when_color(self, chatbox, rect, expected_colors, text, repeat, timeout_sec=5, name='', rect2=None, expected_colors2=None, wait_timeout=False):
+    def _type_when_color(self, chatbox, rect, expected_colors, text, repeat, timeout_sec=5, name='', rect2=None, expected_colors2=None, wait_timeout=False, stoprequest=None):
         print('Type when %s...' % name)
         t_start = datetime.utcnow()
         x = chatbox.avg_x()
         y = chatbox.avg_y()
         while True:
+            if stoprequest is not None and stoprequest.is_set():
+                print('Stopping runner thread gracefully')
+                return
             if datetime.utcnow() - t_start > timedelta(seconds=timeout_sec):
                 print('Done waiting %s to appear (timeout is set to %d sec)' % (name, timeout_sec))
                 break
@@ -81,3 +86,4 @@ class Runner:
                 if px[i, j] in colors:
                     return True
         return False
+

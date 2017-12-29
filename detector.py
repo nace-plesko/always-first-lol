@@ -6,6 +6,29 @@ import time
 from PIL import Image, ImageFilter
 
 
+class Calibration:
+    def __init__(self, chatbox=None, lockin=None, players_joined=None):
+        self.chatbox = chatbox
+        self.lockin = lockin
+        self.players_joined = players_joined
+
+    def calibrate(self, ):
+        try:
+            detector = Detector()
+            print("calibration in proccess...")
+            self.chatbox = detector.find_chatbox()
+            self.lockin = detector.find_lockin(self.chatbox)
+            self.players_joined = detector.find_players_joined(self.chatbox)
+            #detector.test_detector(self.chatbox, self.lockin, self.players_joined) #uncomment this line if you want to see which chat it finds
+            print("calibration was successful!")
+            return True
+
+        except AssertionError:
+            print("Error: can not calibrate. Make sure you are in LOBBY and try again")
+            return False
+
+
+
 class Rect:
     def __init__(self, x_min, x_max, y_min, y_max):
         self.x_min = x_min
@@ -108,3 +131,5 @@ class Detector:
                 px[i, j] = (255, 0, 0, 255)
 
         image.show()
+
+
