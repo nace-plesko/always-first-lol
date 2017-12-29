@@ -35,13 +35,13 @@ class Runner:
         )
 
     def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5):
-        self._type_when_color(chatbox, players_joined, self.player_joined_colors, lane, repeat, timeout_sec=timeout, name='player joined')
+        self._type_when_color(chatbox, players_joined, self.player_joined_colors, lane, repeat, timeout_sec=timeout, name='player joined', wait_timeout=True)
 
     #
     # Utility
     #
 
-    def _type_when_color(self, chatbox, rect, expected_colors, text, repeat, timeout_sec=5, name='', rect2=None, expected_colors2=None):
+    def _type_when_color(self, chatbox, rect, expected_colors, text, repeat, timeout_sec=5, name='', rect2=None, expected_colors2=None, wait_timeout=False):
         print('Type when %s...' % name)
         t_start = datetime.utcnow()
         x = chatbox.avg_x()
@@ -55,7 +55,8 @@ class Runner:
                 if rect2 is None or self._rect_contains_color(rect2, expected_colors2):
                     print('Typing to coordinates: (%d, %d)' % (x, y))
                     self._move_and_type(x, y, text, repeat)
-                    break
+                    if not wait_timeout:
+                        break
         print('Done typing when %s' % name)
 
     def _move_and_type(self, x, y, lane, howManyTimes):
