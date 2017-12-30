@@ -36,8 +36,18 @@ class Runner:
             stoprequest=stoprequest,
         )
 
-    def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5):
-        self._type_when_color(chatbox, players_joined, self.player_joined_colors, lane, repeat, timeout_sec=timeout, name='player joined', wait_timeout=True)
+    def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5, stoprequest=None):
+        self._type_when_color(
+            chatbox,
+            players_joined,
+            self.player_joined_colors,
+            lane,
+            repeat,
+            timeout_sec=timeout,
+            name='player joined',
+            wait_timeout=True,
+            stoprequest = stoprequest,
+        )
 
     #
     # Utility
