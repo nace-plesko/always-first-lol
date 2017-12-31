@@ -4,12 +4,12 @@ from tkinter import messagebox
 from runner import Runner
 from threading import Thread
 import threading
-import time
+import time, os
 
 LANE = ''
 INITIAL_COUNT = 5
 WAIT_INITIAL_SEC = 10 * 60  # 5 minutes
-ON_PLAYER_JOINED_COUNT = 3
+ON_PLAYER_JOINED_COUNT = 2
 WAIT_PLAYER_JOINED_SEC = 5
 
 runner_thread = None
@@ -89,14 +89,19 @@ e1 = Entry(top)
 e1.insert(10, "MID")
 e1.grid(row=0, column=1)
 
-b2 = Button(top, text = "run", command = button_run)
+b2 = Button(top, text = "Run", command = button_run)
 b2.place( x = 30, y = 30)
 
-b3 = Button(top, text = "stop", command = button_stop)
+b3 = Button(top, text = "Stop", command = button_stop)
 b3.place( x = 75, y = 30)
 
 author = Label(text="@author: Nace P.", bd=1, relief=FLAT)
 author.place(x=150, y=80)
+
+version = Label(text="v0.1.0", bd=1, relief=FLAT)
+version.place(x=183, y=60)
+
+top.iconbitmap(r'C:\Nace\PycharmProjects\always-first-lol\First_Place_PNG_Clipart_Image.ico')
 
 top.mainloop()
 

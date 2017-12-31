@@ -1,0 +1,38 @@
+missing module named resource - imported by posix, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named posix - imported by os, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named _posixsubprocess - imported by subprocess, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named 'org.python' - imported by pickle, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py, xml.sax
+missing module named readline - imported by cmd, code, pdb, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named _winreg - imported by platform, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named _scproxy - imported by urllib.request
+missing module named java - imported by platform, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named 'java.lang' - imported by platform, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named termios - imported by tty, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py, getpass
+missing module named grp - imported by tarfile, shutil, pathlib, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named pwd - imported by posixpath, tarfile, shutil, http.server, webbrowser, pathlib, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py, netrc, getpass
+missing module named ce - imported by os, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named _dummy_threading - imported by dummy_threading, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named org - imported by copy, C:\Nace\PycharmProjects\always-first-lol\always-first-gui.py
+missing module named Tkinter - imported by PIL.ImageTk
+missing module named 'PySide.QtCore' - imported by PIL.ImageQt
+missing module named 'PyQt4.QtCore' - imported by PIL.ImageQt
+missing module named 'PyQt5.QtCore' - imported by PIL.ImageQt
+missing module named pathlib2 - imported by PIL.Image
+missing module named cffi - imported by PIL.Image, PIL.PyAccess, PIL.ImageTk
+missing module named __builtin__ - imported by PIL.Image
+missing module named 'Xlib.threaded' - imported by pynput._util.xorg
+missing module named 'Xlib.display' - imported by pynput._util.xorg, pynput.mouse._xorg
+runtime module named six.moves - imported by pynput._util
+missing module named StringIO - imported by six
+missing module named 'Xlib.protocol' - imported by pynput.keyboard._xorg, pynput.mouse._xorg
+missing module named 'Xlib.XK' - imported by pynput.keyboard._xorg, pynput._util.xorg
+missing module named 'Xlib.X' - imported by pynput.keyboard._xorg, pynput.mouse._xorg
+missing module named 'Xlib.ext' - imported by pynput.keyboard._xorg, pynput.mouse._xorg
+missing module named Xlib - imported by pynput.keyboard._xorg
+missing module named CoreFoundation - imported by pynput._util.darwin
+missing module named objc - imported by pynput._util.darwin
+missing module named Quartz - imported by pynput.keyboard._darwin, pynput._util.darwin, pynput.mouse._darwin
+missing module named AppKit - imported by pynput.mouse._darwin
