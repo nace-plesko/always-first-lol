@@ -98,7 +98,7 @@ b3.place( x = 75, y = 30)
 author = Label(text="@author: Nace P.", bd=1, relief=FLAT)
 author.place(x=150, y=80)
 
-version = Label(text="v0.1.2", bd=1, relief=FLAT)
+version = Label(text="v0.1.3", bd=1, relief=FLAT)
 version.place(x=183, y=60)
 
 #top.iconbitmap(r'C:\Nace\PycharmProjects\always-first-lol\First_Place_PNG_Clipart_Image.ico')
