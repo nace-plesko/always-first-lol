@@ -11,9 +11,15 @@ WAIT_PLAYER_JOINED_SEC = 5
 time.sleep(2)
 runner = Runner()
 detector = Detector()
+
+#detector.print_color_under_cursor()
+
 chatbox = detector.find_chatbox()
 lockin = detector.find_lockin(chatbox)
 players_joined = detector.find_players_joined(chatbox)
+
+#chatbox.x_max = chatbox.x_min + 10
+
 detector.test_detector(chatbox, lockin, players_joined)
 runner.move_and_type_first(LANE, INITIAL_COUNT, chatbox, lockin, timeout=WAIT_INITIAL_SEC)
 time.sleep(0.1)

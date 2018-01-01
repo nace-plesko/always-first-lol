@@ -69,6 +69,7 @@ class Detector:
         self.chatbox_colors = [
             (61, 52, 0),  # frame around chatbox
             (62, 53, 1),  # frame around chatbox
+            (4, 5, 3)
         ]
 
     def print_color_under_cursor(self):
