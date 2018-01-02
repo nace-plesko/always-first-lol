@@ -4,6 +4,7 @@ from pynput.keyboard import Key, Controller as KeyController
 from PIL import Image, ImageGrab
 import time
 from PIL import Image, ImageFilter
+import util
 
 
 class Calibration:
@@ -68,28 +69,35 @@ class Detector:
         self.h = self.screenshot.height
         self.chatbox_colors = [
             (61, 52, 0),  # frame around chatbox
-            (62, 53, 1),  # frame around chatbox
-            (4, 5, 3)
         ]
 
     def print_color_under_cursor(self):
         mouse = Controller()
         while True:
             print(ImageGrab.grab().load()[mouse.position[0], mouse.position[1]])
-            time.sleep(5)
+            time.sleep(1)
 
-    def find_chatbox(self):
+    def find_chatbox(self, debug=False):
         x_min, x_max = 1000000, -1000000
         y_min, y_max = 1000000, -1000000
 
         pixels = self.screenshot.load()
         for x in range(self.w):
             for y in range(self.h):
-                if pixels[x, y] in self.chatbox_colors:
+                if util.color_matches_at_least_one(pixels[x, y], self.chatbox_colors, tolerance=3):
                     x_min = x if x < x_min else x_min
                     x_max = x if x > x_max else x_max
                     y_min = y if y < y_min else y_min
                     y_max = y if y > y_max else y_max
+
+                    if debug:
+                        pixels[x, y] = (0, 0, 255, 255)
+                else:
+                    if debug:
+                        pixels[x, y] = (0, 0, 0, 255)
+
+        if debug:
+            self.screenshot.show()
 
         if x_max < 0:
             raise AssertionError('Could not find chatbox - make sure you switch to LOL window after starting the program!')
@@ -112,7 +120,7 @@ class Detector:
         return r
 
     def find_players_joined(self, rect):
-        r = Rect(rect.x_min, rect.x_max, rect.y_min - 5*rect.height(), rect.y_min)
+        r = Rect(rect.x_min, rect.x_max, rect.y_min - 3*rect.height(), rect.y_min)
         print('Players joined: %s' % r)
         return r
 
@@ -132,5 +140,3 @@ class Detector:
                 px[i, j] = (255, 0, 0, 255)
 
         image.show()
-
-
