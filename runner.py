@@ -37,7 +37,7 @@ class Runner:
             debug=debug,
         )
 
-    def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5, stoprequest=None, debug=False, tolerance=1):
+    def move_and_type_again(self, lane, repeat, chatbox, players_joined, timeout=5, stoprequest=None, debug=False, tolerance=0):
         self._type_when_color(
             chatbox,
             players_joined,
