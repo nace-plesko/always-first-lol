@@ -115,7 +115,7 @@ class Detector:
     def find_lockin(self, rect):
         x_max = int(rect.topRight_x() + rect.length() * 0.95)
         y_min = int(rect.topRight_y() - rect.height() * 2.2)
-        r = Rect(x_max - 5 , x_max , y_min - 450, y_min + 50)
+        r = Rect(x_max - 5 , x_max , y_min - 150, y_min)
         print('Lockin: %s' % r)
         return r
 

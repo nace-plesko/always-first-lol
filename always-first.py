@@ -18,7 +18,7 @@ chatbox = detector.find_chatbox(debug=DEBUG_DETECTOR)
 lockin = detector.find_lockin(chatbox)
 players_joined = detector.find_players_joined(chatbox)
 
-# detector.test_detector(chatbox, lockin, players_joined)
+detector.test_detector(chatbox, lockin, players_joined)
 
 runner.move_and_type_first(LANE, INITIAL_COUNT, chatbox, lockin, timeout=WAIT_INITIAL_SEC, debug=DEBUG_RUNNER)
 time.sleep(0.1)
